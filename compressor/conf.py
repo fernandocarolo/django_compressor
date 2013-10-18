@@ -64,6 +64,8 @@ class CompressorConf(AppConf):
     OFFLINE_MANIFEST = 'manifest.json'
     # The Context to be used when TemplateFilter is used
     TEMPLATE_FILTER_CONTEXT = {}
+    # Whether to use multiple output dirs
+    COMPRESS_MULTIPLE_OUTPUT_DIRS = False
 
     class Meta:
         prefix = 'compress'

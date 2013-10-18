@@ -144,6 +144,15 @@ class CompressorTestCase(TestCase):
         finally:
             settings.COMPRESS_OUTPUT_DIR = old_output_dir
 
+    def test_multiple_output_dirs(self):
+        try:
+            old_multiple_output_dirs = settings.COMPRESS_MULTIPLE_OUTPUT_DIRS
+            settings.COMPRESS_MULTIPLE_OUTPUT_DIRS = True
+            output = u'<script type="text/javascript" src="/static/CACHE/js/da/066cd253eada.js"></script>'
+            self.assertEqual(output, JsCompressor(self.js).output())
+        finally:
+            settings.COMPRESS_MULTIPLE_OUTPUT_DIRS = old_multiple_output_dirs
+
     def test_precompiler_class_used(self):
         try:
             original_precompilers = settings.COMPRESS_PRECOMPILERS

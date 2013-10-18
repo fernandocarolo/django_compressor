@@ -82,8 +82,13 @@ class Compressor(object):
         if basename:
             filename = os.path.split(basename)[1]
             parts.append(os.path.splitext(filename)[0])
-        parts.extend([get_hexdigest(content, 12), self.type])
-        return os.path.join(self.output_dir, self.output_prefix, '.'.join(parts))
+        hex_digest = get_hexdigest(content, 12)
+        parts.extend([hex_digest, self.type])
+        sub_dir = hex_digest[-2:]
+        if settings.COMPRESS_MULTIPLE_OUTPUT_DIRS:
+            return os.path.join(self.output_dir, self.output_prefix, sub_dir, '.'.join(parts))
+        else:
+            return os.path.join(self.output_dir, self.output_prefix, '.'.join(parts))
 
     def get_filename(self, basename):
         filename = None

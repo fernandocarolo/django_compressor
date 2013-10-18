@@ -64,6 +64,15 @@ Base settings
     Controls the directory inside :attr:`~django.conf.settings.COMPRESS_ROOT`
     that compressed files will be written to.
 
+.. attribute:: COMPRESS_MULTIPLE_OUTPUT_DIRS
+
+    :Default: ``False``
+
+    When ``COMPRESS_MULTIPLE_OUTPUT_DIRS`` is ``True``, output will be spreaded
+    among multiple subdirectories (up to 256). Useful when there are thousands
+    of compressed files. The default behaviour is to store all files in a
+    single directory for each file type.
+
 Backend settings
 ----------------
 
